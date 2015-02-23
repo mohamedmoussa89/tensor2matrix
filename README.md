@@ -1,8 +1,10 @@
 # tensor2mat
 Generate matrices from tensors (Sympy indexed expressions) using Voigt and vectorization rules. 
 
-Example
--------
+Examples
+--------
+Tensor Contraction
+
     A = IndexedBase("A")
     B = IndexedBase("B")
     C = IndexedBase("C")
@@ -24,4 +26,26 @@ The result is then
 
 This can be converted to a matrix using
 
-	generate_matrix(exprs)
+	mat = generate_matrix(exprs)
+
+
+Example using voigt notation, kinematic rule and vectorization
+	
+	B = IndexedBase("B")	# Shape function tensor (B Matrix)
+	N = IndexedBase("N")	# Shape functions
+
+	i = Idx("i", 2)			# 2D problem
+    j = Idx("j", 2)
+    k = Idx("k", 2)
+
+	I = Idx("I",4)			# 4 Nodes
+
+	expr = Equals(B[i,j,r,I], Rational(1,2)*(N[I,j]*delta(r,i) + N[I,i]*delta(r,j)))
+	exprs = transform(expr, (i,j,k))
+	mat = generate_matrix(exprs)
+
+The resultant matrix 
+
+	B = [[N[0, 0],       0, N[1, 0],       0, N[2, 0],       0, N[3, 0],       0],
+         [      0, N[0, 1],       0, N[1, 1],       0, N[2, 1],       0, N[3, 1]],
+         [N[0, 1], N[0, 0], N[1, 1], N[1, 0], N[2, 1], N[2, 0], N[3, 1], N[3, 0]]]
