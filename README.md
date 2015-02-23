@@ -16,10 +16,12 @@ Example
     exprs = transform(expr, (i,j,k))
 
 The result is then
+
     C[0, 0] == A[0, 0]*B[0, 0] + A[0, 1]*B[1, 0]
 	C[1, 0] == A[1, 0]*B[0, 0] + A[1, 1]*B[1, 0]
 	C[0, 1] == A[0, 0]*B[0, 1] + A[0, 1]*B[1, 1]
 	C[1, 1] == A[1, 0]*B[0, 1] + A[1, 1]*B[1, 1]
 
 This can be converted to a matrix using
+
 	generate_matrix(exprs)
