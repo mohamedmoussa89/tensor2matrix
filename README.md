@@ -1,4 +1,4 @@
-# tensor2mat
+# tensor2matrix
 Generate matrices from tensors (Sympy indexed expressions) using Voigt and vectorization rules. 
 
 Examples
