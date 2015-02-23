@@ -41,7 +41,9 @@ Example using voigt notation, kinematic rule and vectorization
 	I = Idx("I",4)			# 4 Nodes
 
 	expr = Equals(B[i,j,r,I], Rational(1,2)*(N[I,j]*delta(r,i) + N[I,i]*delta(r,j)))
-	exprs = transform(expr, (i,j,k))
+
+	exprs = transform(expr, (i,j,r,I), voigt=(i,j), kinematic=(i,j), vector=(r,I))
+	
 	mat = generate_matrix(exprs)
 
 The resultant matrix 
